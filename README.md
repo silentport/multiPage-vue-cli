@@ -5,24 +5,24 @@
 用法：
 
 ### 1.安装依赖
-#### npm install
+> `npm install`
 
 ### 2.生成一个page
-#### npm run add ${pageName}
+> `npm run add ${pageName}`
 
 ### 3.生成一个page并支持vueRouter
-####  npm run add ${pageName}
+> `npm run add ${pageName} y`
 
 ### 4.移除一个page
-#### npm run rm ${pageName}
+> `npm run rm ${pageName}`
 
 ### 5.本地启动
-#### npm start
+> `npm start`
 #### 或者
-#### npm run start
+> `npm run start`
 
 ### 6.构建
-#### npm run build
+> `npm run build`
 
 --------------------
 
