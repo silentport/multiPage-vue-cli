@@ -10,14 +10,13 @@ const needRouter = process.argv[3]
 
 let entry = require('./entry.js')
 
-entry[pageName] = `./src/${pageName}.js`
+entry[pageName] = true
 
 // 生成入口文件
 let res = `module.exports = { \n`
 Object.keys(entry).forEach(key => {
   res += `\t${key}: './src/${key}/${key}.js',\n`
 })
-fs.mkdirSync('./src/' + pageName)
 fs.writeFileSync(pathName, res + '}')
 
 
@@ -36,6 +35,9 @@ fs.writeFileSync(`./tpl/${pageName}.html`, `
   </body>
 </html>
 `)
+
+// 生成入口文件目录
+fs.mkdirSync('./src/' + pageName)
 
 // 生成入口vue文件
 fs.writeFileSync(`./src/${pageName}/${pageName}.vue`, `
@@ -74,8 +76,8 @@ new Vue({
   template: '<App/>'
 })
 `)
-// 生产router配置文件
-const writeRouter = (err) => {
+// 生成router配置文件
+const writeRouter = () => {
     fs.writeFileSync(`./src/${pageName}/router/index.js`, `
 import Vue from 'vue'
 import Router from 'vue-router'
@@ -91,11 +93,11 @@ export default router
 }
 
 if (needRouter === 'y') {
-  // 生产pages文件夹
+  // 生成pages和router目录
   fs.mkdirSync(`./src/${pageName}/pages`)
   fs.mkdir(`./src/${pageName}/router`, (err, data) => {
     if (!err) {
-      writeRouter(err)
+      writeRouter()
     } 
   })
 }
