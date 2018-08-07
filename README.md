@@ -32,16 +32,16 @@
 ### 3.生成的页面结构
 
 1.没有路由
-`${pagename}`
-   `${pagename}.vue`    
-   `${pagename}.js`    
+`${pagename}`    
+  &#8194;&#8194;&#8194; `${pagename}.vue`    
+   &#8194;&#8194;&#8194;`${pagename}.js`    
 2.有路由
-`${pagename}`   
-   `pages`    
-   `router`    
-      `index.js`     
-   `${pagename}.vue`    
-   `${pagename}.js`    
+`${pagename}`       
+   &#8194;&#8194;&#8194;`pages`    
+   &#8194;&#8194;&#8194;`router`    
+      &#8194;&#8194;&#8194;&#8194;&#8194;&#8194;`index.js`     
+   &#8194;&#8194;&#8194;`${pagename}.vue`    
+   &#8194;&#8194;&#8194;`${pagename}.js`    
 
 -------------------------
 
