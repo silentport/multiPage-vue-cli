@@ -33,15 +33,15 @@
 
 1.没有路由
 `${pagename}`
-   `${pagename}.vue`
-   `${pagename}.js`
+   `${pagename}.vue`    
+   `${pagename}.js`    
 2.有路由
-`${pagename}`
-   `pages`
-   `router`
-      `index.js`
-   `${pagename}.vue`
-   `${pagename}.js`
+`${pagename}`   
+   `pages`    
+   `router`    
+      `index.js`     
+   `${pagename}.vue`    
+   `${pagename}.js`    
 
 -------------------------
 
