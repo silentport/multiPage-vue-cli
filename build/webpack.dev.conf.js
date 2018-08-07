@@ -22,7 +22,7 @@ const rewritesConfig = Object.keys(entry).map(key => {
 const htmlConfig = Object.keys(entry).map(key => {
   return new HtmlWebpackPlugin({
     filename: `${key}.html`,
-    template: `${key}.html`,
+    template: `./tpl/${key}.html`,
     inject: true,
     chunks: [key]
   })
@@ -57,9 +57,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     },
     setup: (app) => {
-      app.use((req,res) => {
-        res.end('8888')
-      })
+      // can load middleware by app.use()
     }
   },
   plugins: [

@@ -15,7 +15,7 @@ const env = require('../config/prod.env')
 const htmlConfig = Object.keys(entry).map(key => {
   return new HtmlWebpackPlugin({
     filename: config.build[key],
-    template: `${key}.html`,
+    template: `./tpl/${key}.html`,
     inject: true,
     minify: {
       removeComments: true,

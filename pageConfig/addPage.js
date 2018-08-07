@@ -6,6 +6,8 @@ const pathName = path.resolve(__dirname, 'entry.js')
 
 const pageName = process.argv[2]
 
+const needRouter = process.argv[3]
+
 let entry = require('./entry.js')
 
 entry[pageName] = `./src/${pageName}.js`
@@ -13,13 +15,14 @@ entry[pageName] = `./src/${pageName}.js`
 // 生成入口文件
 let res = `module.exports = { \n`
 Object.keys(entry).forEach(key => {
-  res += `\t${key}: './src/${key}.js',\n`
+  res += `\t${key}: './src/${key}/${key}.js',\n`
 })
+fs.mkdirSync('./src/' + pageName)
 fs.writeFileSync(pathName, res + '}')
 
 
 // 生成模板文件
-fs.writeFileSync(`./${pageName}.html`, `
+fs.writeFileSync(`./tpl/${pageName}.html`, `
 <!DOCTYPE html>
 <html>
   <head>
@@ -35,10 +38,11 @@ fs.writeFileSync(`./${pageName}.html`, `
 `)
 
 // 生成入口vue文件
-fs.writeFileSync(`./src/${pageName}.vue`, `
+fs.writeFileSync(`./src/${pageName}/${pageName}.vue`, `
 <template>
   <div id="${pageName}Container">
     ${pageName}
+    ${needRouter === 'y' ? '<router-view />' : ''}
   </div>
 
 </template>
@@ -55,17 +59,43 @@ export default {
 `)
 
 // 生成入口js文件
-fs.writeFileSync(`./src/${pageName}.js`, `
+fs.writeFileSync(`./src/${pageName}/${pageName}.js`, `
 import Vue from 'vue'
 import App from './${pageName}.vue'
-
+${needRouter === 'y' ? "import router from './router' " : ''}
 require('viewport-units-buggyfill').init();
 
 Vue.config.productionTip = false;
 
 new Vue({
   el: '#app',
+  ${needRouter === 'y' ? 'router,' : ''}
   components: {App},
   template: '<App/>'
 })
 `)
+// 生产router配置文件
+const writeRouter = (err) => {
+    fs.writeFileSync(`./src/${pageName}/router/index.js`, `
+import Vue from 'vue'
+import Router from 'vue-router'
+
+Vue.use(Router)
+const router = new Router({
+  routes: [{
+    
+  }]
+}) 
+export default router
+    `)
+}
+
+if (needRouter === 'y') {
+  // 生产pages文件夹
+  fs.mkdirSync(`./src/${pageName}/pages`)
+  fs.mkdir(`./src/${pageName}/router`, (err, data) => {
+    if (!err) {
+      writeRouter(err)
+    } 
+  })
+}
