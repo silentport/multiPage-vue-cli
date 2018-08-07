@@ -1,25 +1,28 @@
-# multiPage-vue-cli
-基于vue2.9.3和vue-cli搭建的一款vue多页面应用脚手架，可自动生成webpack配置、模板html、入口js文件以及根组件,支持自定义中间件
+## multiPage-vue-cli
+基于vue2和vue-cli搭建的一款vue多页面应用脚手架，可自动生成webpack配置、模板html、入口js文件以及根组件支持自定义中间件，集成了移动端适配
 -------------------
 
 用法：
 
-1.安装依赖
-### npm install
+### 1.安装依赖
+#### npm install
 
-2.生成一个page
-### npm run add ${pageName}
+### 2.生成一个page
+#### npm run add ${pageName}
 
-3.移除一个page
-### npm run rm ${pageName}
+### 3.生成一个page并支持vueRouter
+####  npm run add ${pageName}
 
-4.本地启动
-### npm start
-或者
-### npm run start
+### 4.移除一个page
+#### npm run rm ${pageName}
 
-5.构建
-### npm run build
+### 5.本地启动
+#### npm start
+#### 或者
+#### npm run start
+
+### 6.构建
+#### npm run build
 
 --------------------
 
